@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>NEC AR – Wind Turbine</title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+  <style>
+    :root { --bg: #0b1620; --fg: #f2f6f9; --accent: #19a974; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 2; padding: 14px 16px;
+      background: linear-gradient(var(--bg), transparent); }
+    header h1 { margin: 0; font-size: 18px; }
+    header p { margin: 4px 0 0; font-size: 13px; opacity: .75; }
+    model-viewer { width: 100%; height: 100%; --poster-color: transparent; }
+    .ar-btn { position: absolute; left: 50%; bottom: 32px; transform: translateX(-50%);
+      padding: 14px 28px; border: 0; border-radius: 999px; background: var(--accent); color: #fff;
+      font-size: 16px; font-weight: 600; box-shadow: 0 6px 20px rgba(0,0,0,.35); cursor: pointer; }
+    .progress { position: absolute; left: 0; top: 0; height: 4px; background: var(--accent);
+      width: 0; transition: width .2s; }
+    .progress.done { opacity: 0; }
+    .hint { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+      padding: 12px 18px; border-radius: 12px; background: rgba(0,0,0,.6); color: #fff;
+      font-size: 14px; text-align: center; display: none; max-width: 80%; }
+    model-viewer[ar-status="session-started"] .hint { display: block; }
+    model-viewer[ar-status="object-placed"] .hint { display: none; }
+    .note { position: absolute; left: 16px; right: 16px; bottom: 96px; text-align: center;
+      font-size: 13px; opacity: .8; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>NEC AR – Wind Turbine</h1>
+    <p>Tekan "Lihat dalam AR", halakan kamera ke lantai/meja, kemudian ketik untuk letak turbin.</p>
+  </header>
+
+  <model-viewer id="mv"
+    src="wind-turbine.glb"
+    alt="Model 3D turbin angin"
+    ar
+    ar-modes="webxr scene-viewer quick-look"
+    ar-placement="floor"
+    ar-scale="auto"
+    camera-controls
+    touch-action="pan-y"
+    auto-rotate
+    shadow-intensity="1"
+    environment-image="neutral"
+    exposure="1">
+
+    <button slot="ar-button" class="ar-btn">Lihat dalam AR</button>
+    <div slot="progress-bar" class="progress" id="progress"></div>
+    <div class="hint">Gerakkan telefon perlahan untuk kesan permukaan…<br>Ketik pada permukaan untuk letak turbin.</div>
+    <div class="note" id="note"></div>
+  </model-viewer>
+
+  <script>
+    const mv = document.getElementById('mv');
+    const bar = document.getElementById('progress');
+    const note = document.getElementById('note');
+    mv.addEventListener('progress', (e) => {
+      const p = e.detail.totalProgress;
+      bar.style.width = (p * 100) + '%';
+      bar.classList.toggle('done', p >= 1);
+      note.textContent = p < 1 ? `Memuatkan model… ${Math.round(p * 100)}%` : '';
+    });
+    mv.addEventListener('load', async () => {
+      if (!(await mv.canActivateAR)) {
+        note.textContent = 'AR tidak disokong pada peranti ini. Buka di telefon Android (Chrome) atau iPhone (Safari).';
+      }
+    });
+    mv.addEventListener('ar-status', (e) => {
+      if (e.detail.status === 'failed') note.textContent = 'Gagal memulakan AR. Cuba lagi atau gunakan peranti lain.';
+    });
+  </script>
+</body>
+</html>
