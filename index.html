@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#101c25" />
   <title>NEC AR — Transport Playground</title>
-  <script type="module" crossorigin src="./assets/index-DVlWO0lS.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-CkLbGz4t.css">
+  <script type="module" crossorigin src="./assets/index-qF5qVbCL.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BjqEq0cw.css">
 </head>
 <body>
   <div id="scene" aria-label="Interactive transport scene"></div>
   <main id="overlay">
+    <div id="ar-gestures" aria-label="Pinch with two fingers to resize the placed vehicle"></div>
     <header class="panel topbar">
       <a class="brand" href="./"><span class="brand-icon">N</span><span>NEC <b>AR</b><small>TRANSPORT PLAYGROUND</small></span></a>
       <span id="mode" class="badge">3D PREVIEW</span>
@@ -25,13 +26,13 @@
     </section>
     <section class="picker panel" aria-label="Choose transport">
       <div class="section-label">THE GARAGE <span>02 VEHICLES</span></div>
-      <button class="vehicle selected" data-vehicle="tram" aria-pressed="true"><span class="vehicle-icon">▰</span><span><strong>City tram</strong><small>A new route through your room</small></span><span class="check">✓</span></button>
-      <button class="vehicle" data-vehicle="car" aria-pressed="false"><span class="vehicle-icon">▱</span><span><strong>Electric car</strong><small>Small footprint. Big possibilities.</small></span><span class="check">✓</span></button>
+      <button class="vehicle" data-vehicle="tram" aria-pressed="false"><span class="vehicle-icon">▰</span><span><strong>City tram</strong><small>A new route through your room</small></span><span class="check">✓</span></button>
+      <button class="vehicle selected" data-vehicle="car" aria-pressed="true"><span class="vehicle-icon">▱</span><span><strong>EV buggy</strong><small>Small footprint. Big possibilities.</small></span><span class="check">✓</span></button>
       <div class="size-row"><label for="size">Model size</label><input id="size" type="range" min="50" max="150" value="100" /><output id="size-value">100%</output></div>
       <button id="start-ar" class="primary" disabled>Checking AR support…</button>
       <p id="support" class="support">Checking your device…</p>
     </section>
-    <div class="scene-caption"><span class="live-dot"></span><span id="vehicle-name">CITY TRAM</span><span class="caption-divider">/</span><span>ALL ELECTRIC. ALL YOURS.</span></div>
+    <div class="scene-caption"><span class="live-dot"></span><span id="vehicle-name">EV BUGGY</span><span class="caption-divider">/</span><span>ALL ELECTRIC. ALL YOURS.</span></div>
     <section class="status panel" aria-live="polite" aria-atomic="true"><span id="status-icon">↗</span><div><strong id="status-title">Loading your ride…</strong><p id="status-detail">Preparing the 3D model.</p></div></section>
     <section class="drive-controls">
       <div class="joystick-wrap panel"><div id="joystick" role="group" aria-label="Driving joystick. Drag up or down to move and left or right to steer."><span class="joy-up">↑</span><span class="joy-down">↓</span><span class="joy-left">←</span><span class="joy-right">→</span><div id="stick"></div></div><small>DRAG TO DRIVE</small></div>
