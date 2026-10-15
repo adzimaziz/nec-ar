@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#101c25" />
   <title>NEC AR — Transport Playground</title>
-  <script type="module" crossorigin src="./assets/index-DOeNlPRF.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-BjqEq0cw.css">
+  <script type="module" crossorigin src="./assets/index-CwsOs3go.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DFfwQCEN.css">
 </head>
 <body>
   <div id="scene" aria-label="Interactive transport scene"></div>
@@ -36,7 +36,12 @@
     <section class="status panel" aria-live="polite" aria-atomic="true"><span id="status-icon">↗</span><div><strong id="status-title">Loading your ride…</strong><p id="status-detail">Preparing the 3D model.</p></div></section>
     <section class="drive-controls">
       <div class="joystick-wrap panel"><div id="joystick" role="group" aria-label="Driving joystick. Drag up or down to move and left or right to steer."><span class="joy-up">↑</span><span class="joy-down">↓</span><span class="joy-left">←</span><span class="joy-right">→</span><div id="stick"></div></div><small>DRAG TO DRIVE</small></div>
-      <div class="actions panel"><button id="brake" class="brake">■ <span>Brake</span></button><button id="reset" class="quiet">↺ <span>Reset ride</span></button><button id="place" class="primary" hidden disabled>Place here</button><p id="control-hint">↑ ↓ move · ← → steer</p></div>
+      <div class="actions panel"><button id="brake" class="brake">■ <span>Brake</span></button><button id="record" class="quiet record-button" aria-pressed="false">● Record</button><button id="reset" class="quiet">↺ <span>Reset ride</span></button><button id="place" class="primary" hidden disabled>Place here</button><p id="control-hint">↑ ↓ move · ← → steer</p></div>
+    </section>
+    <section id="record-dialog" class="panel record-dialog" role="dialog" aria-labelledby="record-title" hidden>
+      <h2 id="record-title"></h2><p id="record-detail"></p>
+      <a id="record-save" class="primary" hidden>Download video</a>
+      <button id="record-close" class="quiet">Close</button>
     </section>
     <footer class="panel">EXPLORE A CLEANER WAY TO MOVE <span>NEC / IMMERSIVE EXPERIENCES</span></footer>
   </main>
